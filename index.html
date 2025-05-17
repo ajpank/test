@@ -4,157 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Management System Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        /* General Styles */
-        body {
-            font-family: 'Sans-serif', Arial, sans-serif;
+        /* ===== Base Styles ===== */
+        :root {
+            --primary-blue: #1A5CC9;
+            --accent-orange: #FF8800;
+            --dark-text: #3C3C3C;
+            --light-gray: #DCDCDC;
+            --white: #FFFFFF;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
-            background-color: #FFFFFF;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #F5F5F5;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            padding: 20px;
         }
-
+        
+        /* ===== Container & Layout ===== */
         .container {
-            background-color: #FFFFFF;
+            width: 100%;
+            max-width: 1000px;
+            background: var(--white);
             border-radius: 10px;
             overflow: hidden;
-            width: 90%;
-            max-width: 960px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
         }
-
+        
         /* Header */
         .header {
-            background-color: #1A5CC9;
-            height: 65px;
-            display: flex;
-            align-items: center;
-            padding: 0 25px;
-        }
-
-        .header .logo-block {
+            background: var(--primary-blue);
+            padding: 15px 25px;
             display: flex;
             align-items: center;
         }
-
-        .header .logo-icon {
+        
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
             width: 38px;
             height: 38px;
-            background-color: #1A5CC9;
-            border: 1px solid #FFFFFF;
+            border: 1px solid var(--white);
             border-radius: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+            display: grid;
+            place-items: center;
+            background: var(--white);
         }
-
-        .header .logo-icon::before {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background-color: #FFFFFF;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .header .logo-icon .fa-book {
-            color: #1A5CC9;
+        
+        .logo-icon .fa-book {
+            color: var(--primary-blue);
             font-size: 18px;
-            position: relative;
-            z-index: 1;
         }
-
-        .header .system-title {
-            margin-left: 10px;
-            color: #FFFFFF;
+        
+        .system-title {
+            color: var(--white);
             line-height: 1.2;
         }
-
-        .header .system-title span {
+        
+        .system-title span {
             display: block;
             text-transform: uppercase;
             font-weight: 600;
         }
-
-        .header .system-title .title-student {
-            font-size: 13px;
-        }
-
-        .header .system-title .title-management {
-            font-size: 11px;
-        }
-
-        /* Main Content */
+        
+        .title-student { font-size: 13px; }
+        .title-management { font-size: 11px; }
+        
+        /* Main Content - Flex Layout */
         .main-content {
             display: flex;
             flex-wrap: wrap;
         }
-
+        
+        /* Illustration Section */
         .illustration-section {
             flex: 1;
+            min-width: 300px;
             padding: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #FFFFFF;
-            position: relative;
+            background: #F9FAFB;
         }
-
+        
         .illustration-image {
             width: 100%;
             max-width: 400px;
             height: auto;
             border-radius: 8px;
-            object-fit: contain;
         }
-
+        
+        /* Login Form Section */
         .login-form-section {
             flex: 1;
+            min-width: 300px;
             padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background-color: #FFFFFF;
         }
-
+        
         .login-form-section h2 {
+            color: var(--primary-blue);
             font-size: 26px;
-            font-weight: 700;
-            color: #1A5CC9;
             margin-bottom: 25px;
-            text-align: left;
+            font-weight: 700;
         }
-
+        
+        /* Form Elements */
         .form-group {
             margin-bottom: 18px;
             position: relative;
         }
-
-        .form-group input[type="text"],
-        .form-group input[type="password"] {
+        
+        .form-group input {
             width: 100%;
-            padding: 10px 15px;
-            height: 42px;
-            border: 1px solid #DCDCDC;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
             border-radius: 5px;
             font-size: 15px;
-            color: #3C3C3C;
-            box-sizing: border-box;
         }
-
-        .form-group input::placeholder {
-            color: #A0A0A0;
-        }
-
-        .form-group .password-icon {
+        
+        .password-icon {
             position: absolute;
             right: 15px;
             top: 50%;
@@ -162,154 +146,120 @@
             color: #A0A0A0;
             cursor: pointer;
         }
-
+        
         .form-options {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            font-size: 15px;
-            color: #3C3C3C;
+            margin: 20px 0;
             flex-wrap: wrap;
+            gap: 10px;
         }
-
-        .form-options .checkbox-option {
+        
+        .checkbox-option {
             display: flex;
             align-items: center;
+            gap: 8px;
         }
-
-        .form-options input[type="checkbox"] {
-            margin-right: 8px;
-            width: 16px;
-            height: 16px;
-            border: 1px solid #DCDCDC;
-            border-radius: 3px;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .form-options .forgot-password {
-            color: #1A5CC9;
+        
+        .forgot-password {
+            color: var(--primary-blue);
             text-decoration: none;
+            font-size: 14px;
         }
-
+        
         .login-button {
             width: 100%;
-            height: 48px;
-            background-color: #FF8800;
-            color: #FFFFFF;
-            font-size: 17px;
-            font-weight: 700;
+            padding: 12px;
+            background: var(--accent-orange);
+            color: var(--white);
             border: none;
             border-radius: 5px;
+            font-weight: 600;
+            font-size: 16px;
             cursor: pointer;
-            margin-bottom: 12px;
-            transition: background-color 0.3s ease;
+            transition: background 0.3s;
         }
-
+        
         .login-button:hover {
-            background-color: #E67300;
+            background: #E67300;
         }
-
-        .support-link,
+        
+        .support-link, 
         .signup-link {
-            font-size: 15px;
-            color: #3C3C3C;
             text-align: center;
-            margin-bottom: 10px;
+            margin: 15px 0;
+            color: var(--dark-text);
         }
-
-        .support-link a,
+        
         .signup-link a {
-            color: inherit;
+            color: var(--primary-blue);
+            font-weight: 600;
             text-decoration: none;
         }
-
-        .signup-link a {
-            color: #1A5CC9;
-            font-weight: 700;
-        }
-
+        
         /* Footer */
         .footer {
-            height: 40px;
-            background-color: #FFFFFF;
+            padding: 15px 25px;
+            border-top: 1px solid #EEE;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            padding: 0 25px;
-            border-top: 1px solid #EEEEEE;
             font-size: 13px;
-            color: #3C3C3C;
-            flex-wrap: wrap;
+            color: var(--dark-text);
         }
-
-        .footer .legal-links a {
+        
+        .legal-links {
+            display: flex;
+            gap: 18px;
+        }
+        
+        .legal-links a {
             color: inherit;
             text-decoration: none;
-            margin-left: 18px;
         }
-
-        /* Hover Effects */
-        .form-options .forgot-password:hover,
-        .support-link a:hover,
-        .signup-link a:hover,
-        .footer .legal-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive adjustments */
+        
+        /* ===== Responsive Adjustments ===== */
         @media (max-width: 768px) {
             .main-content {
                 flex-direction: column;
             }
-
-            .illustration-section,
+            
+            .illustration-section, 
             .login-form-section {
-                flex: none;
-                width: 100%;
                 padding: 20px;
             }
-
+            
             .illustration-image {
-                max-width: 100%;
                 max-height: 250px;
             }
-
-            .header, .footer {
-                padding: 0 15px;
-            }
-
+            
             .footer {
                 flex-direction: column;
-                height: auto;
-                padding: 15px;
+                gap: 10px;
                 text-align: center;
             }
-
-            .footer .copyright,
-            .footer .legal-links {
-                width: 100%;
-                text-align: center;
-                margin-bottom: 5px;
-            }
-
-            .footer .legal-links a {
-                margin: 0 8px;
-            }
-
-            .form-options {
-                 flex-direction: column;
-                 align-items: flex-start;
-            }
-
-            .form-options .checkbox-option {
-                 margin-bottom: 10px;
+            
+            .legal-links {
+                justify-content: center;
             }
         }
-
-        .icon-wrapper:hover { transform: scale(1.1); color: #007bff; }
-        button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 15px;
+            }
+            
+            .form-options {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .login-form-section h2 {
+                font-size: 22px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -329,24 +279,24 @@
         <main class="main-content">
             <section class="illustration-section">
                 <img src="https://assets.onecompiler.app/43j2m32mb/43j2hqchu/Screenshot%202025-05-18%20at%201.07.40%E2%80%AFAM.png" 
-                     alt="Student Management System Illustration" 
+                     alt="School Illustration" 
                      class="illustration-image">
             </section>
 
             <section class="login-form-section">
                 <h2>Login to Your Account</h2>
-                <form action="#" method="post">
+                <form>
                     <div class="form-group">
-                        <input type="text" id="username" name="username" placeholder="Enter username or email" required>
+                        <input type="text" placeholder="Enter username or email" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" id="password" name="password" placeholder="Enter password" required>
-                        <i class="fa-solid fa-eye password-icon"></i>
+                        <input type="password" placeholder="Enter password" required>
+                        <i class="fa-solid fa-eye password-icon" id="togglePassword"></i>
                     </div>
                     <div class="form-options">
                         <div class="checkbox-option">
-                            <input type="checkbox" id="login-otp">
-                            <label for="login-otp">Login with OTP</label>
+                            <input type="checkbox" id="otpLogin">
+                            <label for="otpLogin">Login with OTP</label>
                         </div>
                         <a href="#" class="forgot-password">Forgot Password?</a>
                     </div>
@@ -369,15 +319,14 @@
     </div>
 
     <script>
-        // Password visibility toggle
-        const passwordField = document.getElementById('password');
-        const passwordIcon = document.querySelector('.password-icon');
-
-        if (passwordIcon) {
-            passwordIcon.addEventListener('click', function() {
-                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordField.setAttribute('type', type);
-                this.classList.toggle('fa-eye');
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.querySelector('input[type="password"]');
+        
+        if (togglePassword && passwordInput) {
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
                 this.classList.toggle('fa-eye-slash');
             });
         }
