@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Sans-serif', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 90%;
+            max-width: 960px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        .header {
+            background-color: #1A5CC9;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .header .logo-block {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo-icon {
+            width: 38px;
+            height: 38px;
+            background-color: #1A5CC9;
+            border: 1px solid #FFFFFF;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .header .logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header .logo-icon .fa-book {
+            color: #1A5CC9;
+            font-size: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .system-title {
+            margin-left: 10px;
+            color: #FFFFFF;
+            line-height: 1.2;
+        }
+
+        .header .system-title span {
+            display: block;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .header .system-title .title-student {
+            font-size: 13px;
+        }
+
+        .header .system-title .title-management {
+            font-size: 11px;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .illustration-section {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FFFFFF;
+            position: relative;
+        }
+
+        .illustration-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .login-form-section {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #FFFFFF;
+        }
+
+        .login-form-section h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1A5CC9;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 10px 15px;
+            height: 42px;
+            border: 1px solid #DCDCDC;
+            border-radius: 5px;
+            font-size: 15px;
+            color: #3C3C3C;
+            box-sizing: border-box;
+        }
+
+        .form-group input::placeholder {
+            color: #A0A0A0;
+        }
+
+        .form-group .password-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #A0A0A0;
+            cursor: pointer;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 15px;
+            color: #3C3C3C;
+            flex-wrap: wrap;
+        }
+
+        .form-options .checkbox-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-options input[type="checkbox"] {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            border: 1px solid #DCDCDC;
+            border-radius: 3px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .form-options .forgot-password {
+            color: #1A5CC9;
+            text-decoration: none;
+        }
+
+        .login-button {
+            width: 100%;
+            height: 48px;
+            background-color: #FF8800;
+            color: #FFFFFF;
+            font-size: 17px;
+            font-weight: 700;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #E67300;
+        }
+
+        .support-link,
+        .signup-link {
+            font-size: 15px;
+            color: #3C3C3C;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .support-link a,
+        .signup-link a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .signup-link a {
+            color: #1A5CC9;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            height: 40px;
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+            border-top: 1px solid #EEEEEE;
+            font-size: 13px;
+            color: #3C3C3C;
+            flex-wrap: wrap;
+        }
+
+        .footer .legal-links a {
+            color: inherit;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        /* Hover Effects */
+        .form-options .forgot-password:hover,
+        .support-link a:hover,
+        .signup-link a:hover,
+        .footer .legal-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .illustration-section,
+            .login-form-section {
+                flex: none;
+                width: 100%;
+                padding: 20px;
+            }
+
+            .illustration-image {
+                max-width: 100%;
+                max-height: 250px;
+            }
+
+            .header, .footer {
+                padding: 0 15px;
+            }
+
+            .footer {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                text-align: center;
+            }
+
+            .footer .copyright,
+            .footer .legal-links {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+
+            .footer .legal-links a {
+                margin: 0 8px;
+            }
+
+            .form-options {
+                 flex-direction: column;
+                 align-items: flex-start;
+            }
+
+            .form-options .checkbox-option {
+                 margin-bottom: 10px;
+            }
+        }
+
+        .icon-wrapper:hover { transform: scale(1.1); color: #007bff; }
+        button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-block">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+                <div class="system-title">
+                    <span class="title-student">STUDENT</span>
+                    <span class="title-management">MANAGEMENT SYSTEM</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="illustration-section">
+                <img src="https://assets.onecompiler.app/43j2m32mb/43j2hqchu/Screenshot%202025-05-18%20at%201.07.40%E2%80%AFAM.png" 
+                     alt="Student Management System Illustration" 
+                     class="illustration-image">
+            </section>
+
+            <section class="login-form-section">
+                <h2>Login to Your Account</h2>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <input type="text" id="username" name="username" placeholder="Enter username or email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" name="password" placeholder="Enter password" required>
+                        <i class="fa-solid fa-eye password-icon"></i>
+                    </div>
+                    <div class="form-options">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="login-otp">
+                            <label for="login-otp">Login with OTP</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="login-button">LOGIN</button>
+                </form>
+                <p class="support-link">Need help? <a href="#">Contact Support</a></p>
+                <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="copyright">
+                © 2025 Student Management System. All rights reserved.
+            </div>
+            <div class="legal-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Password visibility toggle
+        const passwordField = document.getElementById('password');
+        const passwordIcon = document.querySelector('.password-icon');
+
+        if (passwordIcon) {
+            passwordIcon.addEventListener('click', function() {
+                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordField.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        }
+    </script>
+</body>
+</html>
