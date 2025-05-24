@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,38 +10,41 @@
         body {
             margin: 0;
             font-family: sans-serif;
-            background-color: #f0f0f0; /* Slightly off-white background */
+            background-color: #f0f0f0;
             display: flex;
             justify-content: center;
             padding: 20px;
+            min-height: 100vh;
         }
 
         .container {
             width: 100%;
-            max-width: 1200px; /* Max width for the main content */
+            max-width: 1200px;
             background-color: #fff;
-            border-radius: 15px; /* Rounded edges for the main container */
-            overflow: hidden; /* Hide sharp corners behind rounded ones */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for the container */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .header {
-            background-color: #3B6DFF; /* Blue color */
+            background-color: #3B6DFF;
             color: #fff;
-            padding: 20px 30px; /* Padding around header content */
+            padding: 20px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 80px; /* Approximate height */
+            min-height: 80px;
+            flex-wrap: wrap;
         }
 
         .header .app-logo {
             display: flex;
             align-items: center;
+            min-width: 50px; /* Prevent logo from shrinking too much */
         }
 
         .header .app-logo .icon-circle {
-            width: 40px; /* Size of the circle */
+            width: 40px;
             height: 40px;
             background-color: #fff;
             border-radius: 50%;
@@ -50,11 +52,23 @@
             justify-content: center;
             align-items: center;
             margin-right: 15px;
+            flex-shrink: 0;
         }
 
         .header .app-logo .icon-circle i {
-            color: #3B6DFF; /* Blue color for the icon inside the white circle */
-            font-size: 24px; /* Size of the icon */
+            color: #3B6DFF;
+            font-size: 24px;
+        }
+
+        .header nav {
+            order: 3; /* Move nav below on small screens */
+            width: 100%; /* Full width on mobile */
+            margin-top: 15px;
+            display: none; /* Hidden by default on mobile */
+        }
+
+        .header nav.active {
+            display: block; /* Show when menu is toggled */
         }
 
         .header nav ul {
@@ -62,15 +76,16 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: 40px; /* Spacing between navigation links */
+            gap: 40px;
         }
 
         .header nav a {
             color: #fff;
             text-decoration: none;
             font-size: 16px;
-            padding: 5px 0; /* Padding for hover effect */
+            padding: 5px 0;
             transition: color 0.3s ease;
+            display: block;
         }
 
         .header nav a:hover {
@@ -78,8 +93,8 @@
         }
 
         .header .notification-icon i {
-            color: #FF9900; /* Orange color */
-            font-size: 28px; /* Size of the bell icon */
+            color: #FF9900;
+            font-size: 28px;
             cursor: pointer;
             transition: opacity 0.3s ease;
         }
@@ -88,10 +103,20 @@
             opacity: 0.8;
         }
 
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            order: 2; /* Position between logo and notification */
+        }
+
         .welcome-section {
-            background-color: #3B6DFF; /* Blue color */
+            background-color: #3B6DFF;
             color: #fff;
-            padding: 20px 30px 40px 30px; /* Padding below header */
+            padding: 20px 30px 40px 30px;
         }
 
         .welcome-section h2 {
@@ -101,27 +126,28 @@
         }
 
         .grid-container {
-            padding: 30px; /* Padding around the grid */
+            padding: 30px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-            gap: 20px; /* Spacing between grid items */
-            margin-top: -20px; /* Pull grid up slightly into the blue section */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: -20px;
         }
 
         .card {
             background-color: #fff;
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle card shadow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-height: 150px; /* Ensure consistent card height */
         }
 
         .card:hover {
-            transform: translateY(-5px); /* Slight lift effect */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .card .card-header {
@@ -131,20 +157,21 @@
         }
 
         .card .card-header i {
-            color: #3B6DFF; /* Blue color for icons */
-            font-size: 24px; /* Size of card icons */
+            color: #3B6DFF;
+            font-size: 24px;
             margin-right: 15px;
+            min-width: 24px; /* Prevent icon from shrinking */
         }
 
         .card .card-header h3 {
             margin: 0;
             font-size: 18px;
-            color: #333; /* Dark grey color */
+            color: #333;
             font-weight: normal;
         }
 
         .card .card-content {
-            flex-grow: 1; /* Allows content area to take available space */
+            flex-grow: 1;
         }
 
         .card .main-value {
@@ -154,105 +181,154 @@
         }
 
         .card .main-value.green {
-            color: #008000; /* Green color */
+            color: #008000;
         }
 
         .card .main-value.orange {
-            color: #FF9900; /* Orange color */
+            color: #FF9900;
         }
 
         .card .secondary-text {
             font-size: 14px;
-            color: #FF9900; /* Orange color */
+            color: #FF9900;
         }
 
         /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .grid-container {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
             .header {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 20px;
+                padding: 15px 20px;
             }
-
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .header nav {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
             .header nav ul {
                 flex-direction: column;
                 gap: 10px;
-                margin-top: 15px;
             }
-
-            .header .notification-icon {
-                margin-top: 15px;
-                align-self: flex-end; /* Align bell to the right */
-            }
-
+            
             .welcome-section {
-                 padding: 20px;
+                padding: 20px;
             }
-
+            
             .welcome-section h2 {
                 font-size: 24px;
             }
-
+            
             .grid-container {
                 padding: 20px;
-                grid-template-columns: 1fr; /* Stack cards on small screens */
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 gap: 15px;
             }
-
+            
+            .card {
+                min-height: 140px;
+                padding: 15px;
+            }
+            
             .card .main-value {
                 font-size: 28px;
             }
         }
 
-         @media (max-width: 480px) {
-             .header .app-logo .icon-circle {
-                 width: 35px;
-                 height: 35px;
-             }
-             .header .app-logo .icon-circle i {
-                 font-size: 20px;
-             }
-             .header nav a {
-                 font-size: 15px;
-             }
-             .header .notification-icon i {
-                 font-size: 24px;
-             }
-             .welcome-section h2 {
-                 font-size: 20px;
-             }
-             .card .card-header i {
-                 font-size: 20px;
-             }
-             .card .card-header h3 {
-                 font-size: 16px;
-             }
-             .card .main-value {
-                 font-size: 24px;
-             }
-             .card .secondary-text {
-                 font-size: 13px;
-             }
-         }
+        @media (max-width: 576px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header .app-logo .icon-circle {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .header .app-logo .icon-circle i {
+                font-size: 20px;
+            }
+            
+            .header nav a {
+                font-size: 15px;
+            }
+            
+            .header .notification-icon i {
+                font-size: 24px;
+            }
+            
+            .welcome-section h2 {
+                font-size: 20px;
+            }
+            
+            .card .card-header i {
+                font-size: 20px;
+            }
+            
+            .card .card-header h3 {
+                font-size: 16px;
+            }
+            
+            .card .main-value {
+                font-size: 24px;
+            }
+            
+            .card .secondary-text {
+                font-size: 13px;
+            }
+        }
 
+        /* Small mobile devices */
+        @media (max-width: 400px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 10px 15px;
+            }
+            
+            .welcome-section {
+                padding: 15px;
+            }
+            
+            .grid-container {
+                padding: 15px;
+            }
+        }
     </style>
-
-    <style>
-        .icon-wrapper:hover { transform: scale(1.1); color: #007bff; }
-        button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    </style>
-    </head>
+</head>
 <body>
     <div class="container">
         <div class="header">
             <div class="app-logo">
                 <div class="icon-circle">
-                    <!-- Font Awesome User Icon -->
                     <i class="fas fa-user"></i>
                 </div>
-                <!-- No app name text described, just the icon -->
             </div>
-            <nav>
+            
+            <button class="mobile-menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="notification-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            
+            <nav id="mainNav">
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Calendar</a></li>
@@ -260,10 +336,6 @@
                     <li><a href="#">Profile</a></li>
                 </ul>
             </nav>
-            <div class="notification-icon">
-                <!-- Font Awesome Bell Icon -->
-                <i class="fas fa-bell"></i>
-            </div>
         </div>
 
         <div class="welcome-section">
@@ -376,7 +448,6 @@
              <!-- Card 10: Notifications -->
             <div class="card">
                 <div class="card-header">
-                    <!-- Using fa-regular for outline bell -->
                     <i class="far fa-bell"></i>
                     <h3>Notifications</h3>
                 </div>
@@ -421,7 +492,6 @@
             <!-- Card 14: FAQ Videos (Question Mark) -->
             <div class="card">
                 <div class="card-header">
-                     <!-- Using fa-question as described for the second FAQ icon -->
                     <i class="fas fa-question"></i>
                     <h3>FAQ Videos</h3>
                 </div>
@@ -429,10 +499,25 @@
                     <!-- Empty content area below title -->
                 </div>
             </div>
-
-            <!-- Card 15 position is empty as per description -->
-
         </div>
     </div>
+
+    <script>
+        // Mobile menu toggle functionality
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+            
+            // Change icon between bars and times
+            const icon = this.querySelector('i');
+            if (nav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
 </body>
 </html>
