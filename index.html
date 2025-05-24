@@ -1,335 +1,438 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management System Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Student Dashboard</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* ===== Base Styles ===== */
-        :root {
-            --primary-blue: #1A5CC9;
-            --accent-orange: #FF8800;
-            --dark-text: #3C3C3C;
-            --light-gray: #DCDCDC;
-            --white: #FFFFFF;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #F5F5F5;
-            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #f0f0f0; /* Slightly off-white background */
             display: flex;
             justify-content: center;
-            align-items: center;
             padding: 20px;
         }
-        
-        /* ===== Container & Layout ===== */
+
         .container {
             width: 100%;
-            max-width: 1000px;
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
+            max-width: 1200px; /* Max width for the main content */
+            background-color: #fff;
+            border-radius: 15px; /* Rounded edges for the main container */
+            overflow: hidden; /* Hide sharp corners behind rounded ones */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for the container */
         }
-        
-        /* Header */
+
         .header {
-            background: var(--primary-blue);
-            padding: 15px 25px;
+            background-color: #3B6DFF; /* Blue color */
+            color: #fff;
+            padding: 20px 30px; /* Padding around header content */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 80px; /* Approximate height */
+        }
+
+        .header .app-logo {
             display: flex;
             align-items: center;
         }
-        
-        .logo-block {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo-icon {
-            width: 38px;
-            height: 38px;
-            border: 1px solid var(--white);
-            border-radius: 4px;
-            display: grid;
-            place-items: center;
-            background: var(--white);
-        }
-        
-        .logo-icon .fa-book {
-            color: var(--primary-blue);
-            font-size: 18px;
-        }
-        
-        .system-title {
-            color: var(--white);
-            line-height: 1.2;
-        }
-        
-        .system-title span {
-            display: block;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-        
-        .title-student { font-size: 13px; }
-        .title-management { font-size: 11px; }
-        
-        /* Main Content - Flex Layout */
-        .main-content {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        /* Illustration Section */
-        .illustration-section {
-            flex: 1;
-            min-width: 300px;
-            padding: 30px;
+
+        .header .app-logo .icon-circle {
+            width: 40px; /* Size of the circle */
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #F9FAFB;
+            margin-right: 15px;
         }
-        
-        .illustration-image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 8px;
+
+        .header .app-logo .icon-circle i {
+            color: #3B6DFF; /* Blue color for the icon inside the white circle */
+            font-size: 24px; /* Size of the icon */
         }
-        
-        /* Login Form Section */
-        .login-form-section {
-            flex: 1;
-            min-width: 300px;
-            padding: 30px;
-        }
-        
-        .login-form-section h2 {
-            color: var(--primary-blue);
-            font-size: 26px;
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
-        
-        /* Form Elements */
-        .form-group {
-            margin-bottom: 18px;
-            position: relative;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--light-gray);
-            border-radius: 5px;
-            font-size: 15px;
-        }
-        
-        .password-icon {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #A0A0A0;
-            cursor: pointer;
-        }
-        
-        .form-options {
+
+        .header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 20px 0;
-            flex-wrap: wrap;
-            gap: 10px;
+            gap: 40px; /* Spacing between navigation links */
         }
-        
-        .checkbox-option {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .forgot-password {
-            color: var(--primary-blue);
+
+        .header nav a {
+            color: #fff;
             text-decoration: none;
-            font-size: 14px;
-        }
-        
-        .login-button {
-            width: 100%;
-            padding: 12px;
-            background: var(--accent-orange);
-            color: var(--white);
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
             font-size: 16px;
+            padding: 5px 0; /* Padding for hover effect */
+            transition: color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .header .notification-icon i {
+            color: #FF9900; /* Orange color */
+            font-size: 28px; /* Size of the bell icon */
             cursor: pointer;
-            transition: background 0.3s;
+            transition: opacity 0.3s ease;
         }
-        
-        .login-button:hover {
-            background: #E67300;
+
+        .header .notification-icon i:hover {
+            opacity: 0.8;
         }
-        
-        .support-link, 
-        .signup-link {
-            text-align: center;
-            margin: 15px 0;
-            color: var(--dark-text);
+
+        .welcome-section {
+            background-color: #3B6DFF; /* Blue color */
+            color: #fff;
+            padding: 20px 30px 40px 30px; /* Padding below header */
         }
-        
-        .signup-link a {
-            color: var(--primary-blue);
-            font-weight: 600;
-            text-decoration: none;
+
+        .welcome-section h2 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
         }
-        
-        /* Footer */
-        .footer {
-            padding: 15px 25px;
-            border-top: 1px solid #EEE;
+
+        .grid-container {
+            padding: 30px; /* Padding around the grid */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 20px; /* Spacing between grid items */
+            margin-top: -20px; /* Pull grid up slightly into the blue section */
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle card shadow */
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Slight lift effect */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+        }
+
+        .card .card-header {
+            display: flex;
             align-items: center;
-            font-size: 13px;
-            color: var(--dark-text);
+            margin-bottom: 15px;
         }
-        
-        .legal-links {
-            display: flex;
-            gap: 18px;
+
+        .card .card-header i {
+            color: #3B6DFF; /* Blue color for icons */
+            font-size: 24px; /* Size of card icons */
+            margin-right: 15px;
         }
-        
-        .legal-links a {
-            color: inherit;
-            text-decoration: none;
+
+        .card .card-header h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333; /* Dark grey color */
+            font-weight: normal;
         }
-        
-        /* ===== Responsive Adjustments ===== */
+
+        .card .card-content {
+            flex-grow: 1; /* Allows content area to take available space */
+        }
+
+        .card .main-value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .card .main-value.green {
+            color: #008000; /* Green color */
+        }
+
+        .card .main-value.orange {
+            color: #FF9900; /* Orange color */
+        }
+
+        .card .secondary-text {
+            font-size: 14px;
+            color: #FF9900; /* Orange color */
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .illustration-section, 
-            .login-form-section {
-                padding: 20px;
-            }
-            
-            .illustration-image {
-                max-height: 250px;
-            }
-            
-            .footer {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-            
-            .legal-links {
-                justify-content: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
             .header {
-                padding: 15px;
-            }
-            
-            .form-options {
                 flex-direction: column;
                 align-items: flex-start;
+                padding: 20px;
             }
-            
-            .login-form-section h2 {
-                font-size: 22px;
+
+            .header nav ul {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .header .notification-icon {
+                margin-top: 15px;
+                align-self: flex-end; /* Align bell to the right */
+            }
+
+            .welcome-section {
+                 padding: 20px;
+            }
+
+            .welcome-section h2 {
+                font-size: 24px;
+            }
+
+            .grid-container {
+                padding: 20px;
+                grid-template-columns: 1fr; /* Stack cards on small screens */
+                gap: 15px;
+            }
+
+            .card .main-value {
+                font-size: 28px;
             }
         }
+
+         @media (max-width: 480px) {
+             .header .app-logo .icon-circle {
+                 width: 35px;
+                 height: 35px;
+             }
+             .header .app-logo .icon-circle i {
+                 font-size: 20px;
+             }
+             .header nav a {
+                 font-size: 15px;
+             }
+             .header .notification-icon i {
+                 font-size: 24px;
+             }
+             .welcome-section h2 {
+                 font-size: 20px;
+             }
+             .card .card-header i {
+                 font-size: 20px;
+             }
+             .card .card-header h3 {
+                 font-size: 16px;
+             }
+             .card .main-value {
+                 font-size: 24px;
+             }
+             .card .secondary-text {
+                 font-size: 13px;
+             }
+         }
+
     </style>
-</head>
+
+    <style>
+        .icon-wrapper:hover { transform: scale(1.1); color: #007bff; }
+        button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    </style>
+    </head>
 <body>
     <div class="container">
-        <header class="header">
-            <div class="logo-block">
-                <div class="logo-icon">
-                    <i class="fa-solid fa-book"></i>
+        <div class="header">
+            <div class="app-logo">
+                <div class="icon-circle">
+                    <!-- Font Awesome User Icon -->
+                    <i class="fas fa-user"></i>
                 </div>
-                <div class="system-title">
-                    <span class="title-student">STUDENT</span>
-                    <span class="title-management">MANAGEMENT SYSTEM</span>
+                <!-- No app name text described, just the icon -->
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li><a href="#">School</a></li>
+                    <li><a href="#">Profile</a></li>
+                </ul>
+            </nav>
+            <div class="notification-icon">
+                <!-- Font Awesome Bell Icon -->
+                <i class="fas fa-bell"></i>
+            </div>
+        </div>
+
+        <div class="welcome-section">
+            <h2>Welcome, [Student Name]</h2>
+        </div>
+
+        <div class="grid-container">
+            <!-- Card 1: Grades -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Grades</h3>
+                </div>
+                <div class="card-content">
+                    <p class="main-value green">85%</p>
+                    <p class="secondary-text">2 pending</p>
                 </div>
             </div>
-        </header>
 
-        <main class="main-content">
-            <section class="illustration-section">
-                <img src="https://assets.onecompiler.app/43j2m32mb/43j2hqchu/Screenshot%202025-05-18%20at%201.07.40%E2%80%AFAM.png" 
-                     alt="School Illustration" 
-                     class="illustration-image">
-            </section>
-
-            <section class="login-form-section">
-                <h2>Login to Your Account</h2>
-                <form>
-                    <div class="form-group">
-                        <input type="text" placeholder="Enter username or email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" placeholder="Enter password" required>
-                        <i class="fa-solid fa-eye password-icon" id="togglePassword"></i>
-                    </div>
-                    <div class="form-options">
-                        <div class="checkbox-option">
-                            <input type="checkbox" id="otpLogin">
-                            <label for="otpLogin">Login with OTP</label>
-                        </div>
-                        <a href="#" class="forgot-password">Forgot Password?</a>
-                    </div>
-                    <button type="submit" class="login-button">LOGIN</button>
-                </form>
-                <p class="support-link">Need help? <a href="#">Contact Support</a></p>
-                <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
-            </section>
-        </main>
-
-        <footer class="footer">
-            <div class="copyright">
-                © 2025 Student Management System. All rights reserved.
+            <!-- Card 2: Assignments -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-clipboard"></i>
+                    <h3>Assignments</h3>
+                </div>
+                <div class="card-content">
+                    <p class="main-value green">92%</p>
+                    <p class="secondary-text">2 pending</p>
+                </div>
             </div>
-            <div class="legal-links">
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy Policy</a>
+
+            <!-- Card 3: Attendance -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h3>Attendance</h3>
+                </div>
+                <div class="card-content">
+                    <p class="main-value orange">25%</p>
+                    <p class="secondary-text">2 pending</p>
+                </div>
             </div>
-        </footer>
+
+            <!-- Card 4: Timetable -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-clipboard"></i>
+                    <h3>Timetable</h3>
+                </div>
+                <div class="card-content">
+                    <!-- Empty content area below title -->
+                </div>
+            </div>
+
+            <!-- Card 5: Study Material -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-list"></i>
+                    <h3>Study Material</h3>
+                </div>
+                <div class="card-content">
+                    <!-- Empty content area below title -->
+                </div>
+            </div>
+
+            <!-- Card 6: Study Material (Duplicate) -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-list"></i>
+                    <h3>Study Material</h3>
+                </div>
+                <div class="card-content">
+                    <!-- Empty content area below title -->
+                </div>
+            </div>
+
+            <!-- Card 7: Chat -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-comment-dots"></i>
+                    <h3>Chat</h3>
+                </div>
+                <div class="card-content">
+                    <!-- Empty content area below title -->
+                </div>
+            </div>
+
+            <!-- Card 8: Library (Book) -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Library</h3>
+                </div>
+                <div class="card-content">
+                    <!-- Empty content area below title -->
+                </div>
+            </div>
+
+            <!-- Card 9: Library (Clipboard) -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-clipboard"></i>
+                    <h3>Library</h3>
+                </div>
+                <div class="card-content">
+                    <!-- Empty content area below title -->
+                </div>
+            </div>
+
+             <!-- Card 10: Notifications -->
+            <div class="card">
+                <div class="card-header">
+                    <!-- Using fa-regular for outline bell -->
+                    <i class="far fa-bell"></i>
+                    <h3>Notifications</h3>
+                </div>
+                <div class="card-content">
+                    <!-- Empty content area below title -->
+                </div>
+            </div>
+
+             <!-- Card 11: Feedback (Comment) -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-comment"></i>
+                    <h3>Feedback</h3>
+                </div>
+                <div class="card-content">
+                    <!-- Empty content area below title -->
+                </div>
+            </div>
+
+             <!-- Card 12: Feedback (Duplicate) -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-comment"></i>
+                    <h3>Feedback</h3>
+                </div>
+                <div class="card-content">
+                    <!-- Empty content area below title -->
+                </div>
+            </div>
+
+            <!-- Card 13: FAQ Videos (Question Circle) -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>FAQ Videos</h3>
+                </div>
+                <div class="card-content">
+                    <!-- Empty content area below title -->
+                </div>
+            </div>
+
+            <!-- Card 14: FAQ Videos (Question Mark) -->
+            <div class="card">
+                <div class="card-header">
+                     <!-- Using fa-question as described for the second FAQ icon -->
+                    <i class="fas fa-question"></i>
+                    <h3>FAQ Videos</h3>
+                </div>
+                <div class="card-content">
+                    <!-- Empty content area below title -->
+                </div>
+            </div>
+
+            <!-- Card 15 position is empty as per description -->
+
+        </div>
     </div>
-
-    <script>
-        // Toggle password visibility
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.querySelector('input[type="password"]');
-        
-        if (togglePassword && passwordInput) {
-            togglePassword.addEventListener('click', function() {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-                this.classList.toggle('fa-eye-slash');
-            });
-        }
-    </script>
 </body>
 </html>
